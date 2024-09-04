@@ -1,17 +1,34 @@
-meme_dict = {
-            "CRINGE": "Algo excepcionalmente raro o embarazoso",
-            "LOL": "Una respuesta común a algo gracioso",
-            "XD": "Es otra forma de respuesta a algo gracioso",
-            "RUSH": "Es una forma de ir a por un enemigo en un juego",
-            "F": "Es una forma de respuesta a algo malo que paso oh una muerte",
-            "GG": "Es una forma de respuesta a algo bueno que ah pasado en un juego como una victoria"
-            }
-while True:
-    word = input("Escribe una palabra que no entiendas (¡con mayúsculas!) o 'SALIR' para terminar: ")
-    
-    if word == "SALIR":
-        break
-    elif word in meme_dict:
-        print(meme_dict[word])
-    else:
-        print("Palabra no encontrada en el diccionario.")
+import discord
+from bot2 import gen_pass
+from discord.ext import commands
+
+# La variable intents almacena los privilegios del bot
+intents = discord.Intents.default()
+# Activar el privilegio de lectura de mensajes
+intents.message_content = True
+# Crear un bot en la variable cliente y transferirle los privilegios
+bot = commands.Bot(command_prefix = "$" ,intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Hemos iniciado sesión como {bot.user}')
+
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send("Hi!")
+
+@bot.command()
+async def bye(ctx):
+    await ctx.send("😢")
+
+@bot.command()
+async def password(ctx):
+    await ctx.send(gen_pass(10))
+
+@bot.command()
+async def joined(ctx, member: discord.Member):
+    """Says when a member joined."""
+    await ctx.send(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
+
+bot.run("")
