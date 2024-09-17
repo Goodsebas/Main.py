@@ -46,5 +46,23 @@ async def cool(ctx):
                 await ctx.send(f'No, I could not find the user you mentioned.')
         else:
             await ctx.send(f'No, {ctx.subcommand_passed} is not cool')
-
+@bot.command()
+async def musica(ctx):
+    '''Recomienda una música aleatoria'''
+    canciones = [
+        "Bohemian Rhapsody - Queen",
+        "Billie Jean - Michael Jackson",
+        "Chica Paranormal - Paulo Londra",
+        "Goosebumps - Travis Scott",
+        "Memorias - Mora-Jhayco",
+        "Hey Jude - The Beatles",
+        "Shape of You - Ed Sheeran",
+        "Uptown Funk - Mark Ronson ft. Bruno Mars",
+        "Blinding Lights - The Weeknd",
+        "Rolling in the Deep - Adele"
+    ]
+    
+    cancion = random.choice(canciones)
+    await ctx.send(f'🎶 Te recomiendo escuchar: {cancion}')
+    
 bot.run("")
