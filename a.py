@@ -85,6 +85,23 @@ async def musica(ctx):
     cancion = random.choice(canciones)
     await ctx.send(f'🎶 Te recomiendo escuchar: {cancion}')
 
+@bot.command(name='bienvenida')
+async def bienvenida(ctx):
+    mensaje_bienvenida = """
+    🎉 ¡Bienvenido/a al bot de reducción de residuos! ♻️
+
+    Aquí tienes algunos comandos útiles para empezar a reducir tus residuos en casa:
+
+    🔹 `$consejo` - Obtén un consejo sobre cómo reducir residuos.
+    🔹 `$reciclar [material]` - Aprende a reciclar materiales específicos como plástico, vidrio o papel.
+    🔹 `$receta` - Recibe una receta para aprovechar las sobras de comida.
+    🔹 `$desafio` - Participa en un desafío semanal para reducir residuos.
+    🔹 `$progreso [avance]` - Registra tu progreso en la reducción de residuos o consulta tus avances anteriores.
+
+    🌱 ¡Estamos aquí para ayudarte a crear un hogar más sostenible! ¡No dudes en usar los comandos y empezar hoy! 🌍
+    """
+    await ctx.send(mensaje_bienvenida)
+
 # Lista de consejos sobre cómo reducir residuos
 consejos = [
     "Evita productos desechables y usa alternativas reutilizables.",
@@ -153,5 +170,5 @@ async def registrar_progreso(ctx, avance: str = None):
             await ctx.send(f"📊 Progreso de {usuario}:\n{avances_formateados}")
         else:
             await ctx.send("No has registrado ningún progreso todavía. ¡Empieza hoy!")
-    
+            
 bot.run("")
